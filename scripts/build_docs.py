@@ -61,6 +61,12 @@ TITLES = {
         "Consistency and stability, the decay equation and the condition |1 + h*lambda| <= 1, "
         "stability regions, and the Runge–Kutta family from Euler to RK4.",
     ),
+    "PDEs/02-day2-pde.ipynb": (
+        "Day 2 — Excursion to PDE theory",
+        "Follows the lecture slide by slide: why there is no Peano theorem for PDEs, strong solutions, "
+        "boundary conditions and well-posedness, type classification, the weak solution concept, "
+        "L2 and Sobolev spaces, and the Lax-Milgram theorem.",
+    ),
     "PDEs/03-day3-pde.ipynb": (
         "Day 3 — The Finite Element Method",
         "Follows the lecture slide by slide: weak form to linear system, mesh generation, the reference "
