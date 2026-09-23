@@ -1,0 +1,61 @@
+# Build every notebook into a browsable HTML + PDF site and publish it to GitHub Pages.
+#
+# Adding new content needs no change to this file: drop a .ipynb anywhere in the
+# repository, push, and it appears on the site. Give it a nicer title by adding an
+# entry to TITLES in scripts/build_docs.py.
+
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.ipynb"
+      - "**/README.md"
+      - "scripts/build_docs.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:          # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:                  # one deployment at a time; newer pushes win
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install converters
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "nbconvert[webpdf]" jupyter
+          python -m playwright install --with-deps chromium
+
+      - name: Build docs/ (HTML + PDF + index)
+        run: python scripts/build_docs.py --pdf --repo "${{ github.repository }}"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMSC 2026</title>
+<meta name="description" content="Notes and code from the AMSC 2026 Summer School on Applied Mathematics and Scientific Computing, Kathmandu University &amp; IWR Heidelberg.">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #fcfcfb; --surface: #ffffff; --border: #e5e4df;
+  --ink: #0b0b0b; --ink-2: #52514e; --ink-3: #8a8984;
+  --accent: #2a78d6; --accent-soft: #eef4fd;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #17171a; --surface: #1f1f23; --border: #303036;
+    --ink: #f5f5f3; --ink-2: #b8b7b1; --ink-3: #85847f;
+    --accent: #6da7ec; --accent-soft: #1c2938;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #17171a; --surface: #1f1f23; --border: #303036;
+  --ink: #f5f5f3; --ink-2: #b8b7b1; --ink-3: #85847f;
+  --accent: #6da7ec; --accent-soft: #1c2938;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 900px; margin: 0 auto; padding: 56px 16px 80px; }
+header { margin-bottom: 40px; }
+h1 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.2; margin: 0 0 10px; letter-spacing: -0.02em; }
+.lede { color: var(--ink-2); margin: 0 0 18px; max-width: 62ch; }
+.meta { color: var(--ink-3); font-size: 0.86rem; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.meta a { color: var(--ink-3); }
+h2 {
+  font-size: 1.12rem; margin: 40px 0 4px; letter-spacing: -0.01em;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+h2 .sub { display: block; font-size: 0.82rem; font-weight: 400; color: var(--ink-3); margin-top: 4px; letter-spacing: 0; }
+.cards { display: grid; gap: 12px; margin-top: 18px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; transition: border-color .15s ease, transform .15s ease;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.card h3 { margin: 0 0 4px; font-size: 1rem; }
+.card h3 a { color: var(--ink); text-decoration: none; }
+.card h3 a:hover { color: var(--accent); }
+.card p { margin: 0 0 12px; color: var(--ink-2); font-size: 0.9rem; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.78rem; padding: 4px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  border: 1px solid transparent;
+}
+.pill:hover { border-color: var(--accent); }
+.pill.ghost { background: transparent; color: var(--ink-3); border-color: var(--border); }
+.path { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.78rem; color: var(--ink-3); }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--ink-3); font-size: 0.84rem; }
+footer a { color: var(--accent); }
+@media (max-width: 480px) { .wrap { padding-top: 36px; } }
+</style></head><body><div class='wrap'>
+<header>
+<h1>AMSC 2026 — Applied Mathematics &amp; Scientific Computing</h1>
+<p class='lede'>Notes, derivations and runnable code from the summer school jointly organised by <strong>Kathmandu University</strong>, Nepal and the <strong>Interdisciplinary Center for Scientific Computing (IWR), Heidelberg University</strong>, Germany — 21–25 September 2026, Dhulikhel.</p>
+<div class='meta'>
+<span>Updated 2026-09-23</span>
+<a href='https://github.com/rockerritesh/AMSC-2026'>Source on GitHub</a>
+<span>Every notebook below runs top to bottom</span>
+</div></header>
+<h2>Lecture Series B — ODEs<span class='sub'>Modelling &amp; Parameter Estimation for ODEs · Dr. Michael Winckler, IWR Heidelberg</span></h2>
+<div class='cards'>
+<div class='card'>
+<h3><a href='ODEs/001-ode.html'>Day 1 — Euler&#x27;s method for a 2-D system</a></h3>
+<p>Forward Euler for the harmonic oscillator y&#x27;&#x27; = -y written as a first-order system; comparison with sin/cos and the growth of the amplitude.</p>
+<div class='row'>
+<a class='pill' href='ODEs/001-ode.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/ODEs/001-ode.ipynb'>Notebook</a>
+<span class='pill ghost'>7 cells · 1 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>ODEs/001-ode.ipynb</div>
+</div>
+<div class='card'>
+<h3><a href='ODEs/002-ode-day2.html'>Day 2 — Existence, uniqueness, error and order</a></h3>
+<p>Blow-up in finite time, Lipschitz continuity and non-uniqueness, why Euler&#x27;s amplitude grows, local vs global error, Richardson extrapolation, and the SIR model.</p>
+<div class='row'>
+<a class='pill' href='ODEs/002-ode-day2.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/ODEs/002-ode-day2.ipynb'>Notebook</a>
+<span class='pill ghost'>32 cells · 10 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>ODEs/002-ode-day2.ipynb</div>
+</div>
+<div class='card'>
+<h3><a href='ODEs/003-ode-day3.html'>Day 3 — Stability and Runge–Kutta methods</a></h3>
+<p>Consistency and stability, the decay equation and the condition |1 + h*lambda| &lt;= 1, stability regions, and the Runge–Kutta family from Euler to RK4.</p>
+<div class='row'>
+<a class='pill' href='ODEs/003-ode-day3.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/ODEs/003-ode-day3.ipynb'>Notebook</a>
+<span class='pill ghost'>12 cells · 4 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>ODEs/003-ode-day3.ipynb</div>
+</div>
+</div>
+<h2>Lecture Series A — PDEs<span class='sub'>Numerical Solution of PDEs · Prof. Dr. Peter Bastian, IWR Heidelberg</span></h2>
+<div class='cards'>
+<div class='card'>
+<h3><a href='PDEs/03-day3-pde.html'>Day 3 — The Finite Element Method</a></h3>
+<p>Follows the lecture slide by slide: weak form to linear system, mesh generation, the reference element and the affine map, assembly, Cea&#x27;s lemma, and the L-shape convergence study.</p>
+<div class='row'>
+<a class='pill' href='PDEs/03-day3-pde.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/PDEs/03-day3-pde.ipynb'>Notebook</a>
+<span class='pill ghost'>32 cells · 3 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>PDEs/03-day3-pde.ipynb</div>
+</div>
+</div>
+<h2>Modelling workbench<span class='sub'>Extra notebooks: population dynamics, parameter estimation, groundwater contamination</span></h2>
+<div class='cards'>
+<div class='card'>
+<h3><a href='modeling/00-extra.html'>Logistic growth and parameter estimation</a></h3>
+<p>The logistic ODE, a fit of 100 years of world-population data with Euler inside least squares, sensitivity analysis, identifiability, and Levenberg–Marquardt from scratch.</p>
+<div class='row'>
+<a class='pill' href='modeling/00-extra.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/modeling/00-extra.ipynb'>Notebook</a>
+<span class='pill ghost'>6 cells · 4 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>modeling/00-extra.ipynb</div>
+</div>
+<div class='card'>
+<h3><a href='modeling/01-extra.html'>Groundwater contamination</a></h3>
+<p>Darcy flow and the advection–dispersion equation: a 1-D column verified against the exact Ogata–Banks solution, then a 2-D aquifer with a clay lens, a leaking tank and a pumping well.</p>
+<div class='row'>
+<a class='pill' href='modeling/01-extra.html'>Read</a>
+<a class='pill ghost' href='https://github.com/rockerritesh/AMSC-2026/blob/main/modeling/01-extra.ipynb'>Notebook</a>
+<span class='pill ghost'>12 cells · 2 figures</span>
+</div>
+<div class='path' style='margin-top:10px'>modeling/01-extra.ipynb</div>
+</div>
+</div>
+<footer>Built automatically from the notebooks by <a href='https://github.com/rockerritesh/AMSC-2026/blob/main/.github/workflows/pages.yml'>GitHub Actions</a>. Lecture slides are not redistributed here.</footer>
+</div></body></html>

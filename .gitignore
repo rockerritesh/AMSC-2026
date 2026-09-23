@@ -1,0 +1,24 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# macOS
+.DS_Store
+
+# local session log
+Conversation.md
+
+# Lecture slides are the lecturers' own material — not redistributed publicly.
+# Remove these three lines if you have permission to share them.
+PDEs/AMSC 2026 SLIDES/
+*.zip
+
+# Notebook checkpoints
+.ipynb_checkpoints/
